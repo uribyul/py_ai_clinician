@@ -552,19 +552,17 @@ if __name__ == '__main__':
                     pickle.dump(qldata3train,file)
                     pickle.dump(qldata3test,file) 
 
-        # save to pickle and csv 
-        with open('recqvi.pkl', 'wb') as file:
-            pickle.dump(modl,file) 
-            pickle.dump(recqvi,file)
-        np.savetxt('recqvi.csv',recqvi,delimiter=',') 
-
 
     recqvi=recqvi[:modl+1,:]
 
-    # save to pickle 
-    with open('recqvi.pkl', 'wb') as file:
-        pickle.dump(modl,file) 
+    # save to pickle for visualization 
+    with open('step_5_start.pkl', 'wb') as file:
+        pickle.dump(MIMICzs,file)
+        pickle.dump(actionbloc,file)
+        pickle.dump(reformat5,file)
         pickle.dump(recqvi,file)
+
+    # save recqvi in csv format 
     np.savetxt('recqvi.csv',recqvi,delimiter=',') 
 
 

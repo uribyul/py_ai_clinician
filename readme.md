@@ -27,7 +27,8 @@ In addition to the nature paper, you can find anonther work on sepsis and reinfo
 4. After this step, you will get 24 csv files (about 2.7GB). They're stored in 'd:\exportdir' 
 
 ### Step Two (Define Sepsis Cohort)
-1. From this step, the original codes were written in matlab. If you want to run the matlab codes, you need Matlab and Matlab Toolboxes (Bioinformatics, Optimization, Parallel Computing, Statistics and Machine Learning). 
+1. From this step, the original codes were written in matlab. If you want to run the matlab codes, you need Matlab and Matlab Toolboxes (Bioinformatics, Optimization, Parallel Computing, Statistics and Machine Learning and Curve Fitting). 
+
 2. This step reimplemted https://github.com/matthieukomorowski/AI_Clinician/blob/master/AIClinician_sepsis3_def_160219.m 
 2. Please open/run 'sepsis_def.ipynb' or run 'python sepsis_def.py'. For your convinience, the 'reference_matrices.mat' file was included (from the author's github page). 
 3. After this step, you will get 'sepsis_mimiciii.csv' and pickle file to be used in the next step (about 2.7G). 
@@ -45,7 +46,12 @@ In addition to the nature paper, you can find anonther work on sepsis and reinfo
 5. After this step, you will get bestpol.pkl (best policy found so far), recqvi.pkl (statistics of experiments), and recqvi.csv files (same data but in csv format). 
 6. With 6 core cpu, it takes about 10 min per each iteration. 
 
+### Step Five (Visualize Figures)
+1. This step reimplemented https://github.com/matthieukomorowski/AI_Clinician/blob/master/AIClinician_core_160219.m
+2. Please open/run 'Core_Visualize.ipynb' or run 'python Core_Visualize.py'
+3. This step doesn't use parallelization and it takes some time to get all the figures. (Especially, Figure 2(C) takes much time to get data) 
+
 ### Future Works 
 1. In this work, eICU dataset was not considered. Some related codes were not translated into Python. 
-2. In this work, some codes for figures were not translated (e.g., in Core.m)
+2. Parallelization of Visualization (e.g., offpolicy_eval_tdlearning_with_morta function)
 

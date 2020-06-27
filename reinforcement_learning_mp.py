@@ -179,3 +179,60 @@ def offpolicy_eval_tdlearning( qldata3, physpol, gamma, iterID):
     # print(iterID,'ends...') 
     
     return np.nansum(Vs[:ncl].reshape(-1,1)*d)/sum(d)
+
+# without parallelization 
+def offpolicy_eval_tdlearning_with_morta( qldata3, physpol, ptid, idx, actionbloctrain, Y90, gamma, num_iter ):
+    
+    ncl=physpol.shape[0]-2
+    nact = physpol.shape[1]
+    
+    bootql = np.full((num_iter,1),np.nan)
+   
+
+    p=np.unique(qldata3[:,7])
+    prop=5000/p.size # 5000 patients of the samples are used
+    prop=min([prop, 0.75])  #max possible value is 0.75 (75% of the samples are used)
+
+    jprog = 0  
+    prog = np.full((int(np.floor(ptid.shape[0]*1.01*prop*num_iter)),4),np.nan)
+    
+
+    ii=qldata3[:,0]==1
+    a=qldata3[ii,1]
+    d=np.zeros((ncl,1))
+    for i in range(ncl): 
+        d[i]=sum(a==i)    # intitial state disctribution
+
+    for i in range(num_iter): 
+        if(i%10==0):
+            print(i)
+
+        ii=np.floor(np.random.rand(p.shape[0],1)+prop)     # select a random sample of trajectories
+        p = p.reshape(-1,1)
+        jj=np.isin(qldata3[:,7],p[ii==1])
+        q=qldata3[jj==1,0:4] 
+
+        Qoff,_ = OffpolicyQlearning150816( q , gamma, 0.1, 300000,ncl,nact)
+            
+
+        V=np.zeros((ncl,nact))
+        for k in range(ncl):  
+            for j in range(nact): 
+                V[k,j]=physpol[k,j]*Qoff[k,j]
+            
+            
+        Vs = sum(np.transpose(V))
+        
+        bootql[i] = np.nansum(Vs[:ncl].reshape(-1,1)*d)/sum(d)
+        jj = np.where(np.isin(ptid,p[ii==1]))[0]
+        for ii in range(jj.size): # record offline Q value in training set & outcome - for plot
+            prog[jprog,0] = Qoff[idx[jj[ii]],actionbloctrain[jj[ii]]]
+            prog[jprog,1] = Y90[jj[ii]]
+            prog[jprog,2] = ptid[jj[ii]]  # HERE EACH ITERATION GIVES A DIFFERENT PT_ID  //// if I just do rep*ptid it bugs and mixes up ids, for ex with id3 x rep 10 = 30 (which already exists)
+            prog[jprog,3] = i 
+            jprog = jprog+1 
+        
+        
+    return bootql, prog 
+
+

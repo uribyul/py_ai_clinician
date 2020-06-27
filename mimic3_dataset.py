@@ -715,6 +715,7 @@ reformat3t.loc[ii,'max_dose_vaso']=np.zeros((np.sum(ii)))
 # check prop of missingness here
 miss=np.sum(np.isnan(reformat3t)/reformat3t.shape[0]) 
 plt.bar(np.arange(miss.shape[0]), miss)
+# plt.show() 
 
 # I fill the values temporarily with zeros, otherwise kNN imp doesnt work
 reformat3t['Shock_Index']=np.zeros((reformat3t.shape[0],1))
