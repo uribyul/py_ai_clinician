@@ -19,7 +19,7 @@
 # 
 # Todo: 
 # eICU was not included in this re-implementation 
-# the analysis of the poicies and figures were not included 
+
 
 
 

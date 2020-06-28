@@ -49,9 +49,7 @@ In addition to the nature paper, you can find anonther work on sepsis and reinfo
 ### Step Five (Visualize Figures)
 1. This step reimplemented https://github.com/matthieukomorowski/AI_Clinician/blob/master/AIClinician_core_160219.m
 2. Please open/run 'Core_Visualize.ipynb' or run 'python Core_Visualize.py'
-3. This step doesn't use parallelization and it takes some time to get all the figures. (Especially, Figure 2(C) takes much time to get data) 
+3. Figure 2(C) takes much time to get results. 
 
 ### Future Works 
 1. In this work, eICU dataset was not considered. Some related codes were not translated into Python. 
-2. Parallelization of Visualization (e.g., offpolicy_eval_tdlearning_with_morta function)
-
