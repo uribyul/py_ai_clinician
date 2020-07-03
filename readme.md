@@ -50,6 +50,11 @@ In addition to the nature paper, you can find anonther work on sepsis and reinfo
 1. This step reimplemented https://github.com/matthieukomorowski/AI_Clinician/blob/master/AIClinician_core_160219.m
 2. Please open/run 'Core_Visualize.ipynb' or run 'python Core_Visualize.py'
 3. Figure 2(C) takes much time to get results. 
+4. We got the folllwing figures   
+<p align="center"><img width="40%" src="images/Figure_1.png" /></p>
+<p align="center"><img width="40%" src="images/Figure_2.png" /></p>
+<p align="center"><img width="40%" src="images/Figure_3.png" /></p> 
+<p align="center"><img width="40%" src="images/Figure_4.png" /></p> 
 
 ### Future Works 
 1. In this work, eICU dataset was not considered. Some related codes were not translated into Python. 

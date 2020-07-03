@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 # coding: utf-8
 
 # In[ ]:
@@ -146,7 +146,7 @@ if __name__ == '__main__':
     plt.plot(yy1,linewidth=1,color='red')
     ax.set_ylabel('Mortality risk')
     ax.set_xlabel('Return of actions')
-    plt.xticks(np.arange(0,nbins+10,step = nbins/10),labels = np.arange(-100,120,step=20))
+    plt.xticks(np.arange(0,nbins+10,step = nbins/10), np.arange(-100,120,step=20))
     plt.show() 
     
     ## FIG 2D = Computes avg Q value per patient / MIMIC TRAIN SET
@@ -154,36 +154,12 @@ if __name__ == '__main__':
     df = pd.DataFrame(prog,columns = ['Qoff','morta','id','rep'])
     d = df.groupby(['rep','id']).mean()
     edges = np.arange(-100,105,5)
-    data = d[d['morta']==0]['Qoff'].to_numpy()
+    data = np.array(d[d['morta']==0]['Qoff'])
     plt.hist(data,edges,facecolor='b',weights=np.ones(len(data)) / len(data), alpha=0.5)
-    data = d[d['morta']==1]['Qoff'].to_numpy()
+    data = np.array(d[d['morta']==1]['Qoff'])
     plt.hist(data,edges,facecolor='r',weights=np.ones(len(data)) / len(data), alpha=0.5)
     ax.legend(['Survivors','Non-survivors'],loc='upper left')
     ax.set_xlabel('Average return per patient')
     ax.set_ylabel('Probability')
     plt.show()
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
